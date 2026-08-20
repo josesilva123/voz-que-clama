@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voz que Clama</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">VQ</div>
+      <div>
+        <strong>VOZ QUE CLAMA</strong>
+        <span>Uma voz anunciando a Palavra</span>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+    <nav id="nav">
+      <a href="#inicio">Início</a>
+      <a href="#tv">TV</a>
+      <a href="#radio">Rádio</a>
+      <a href="#podcast">Podcast</a>
+      <a href="#estudos">Estudos</a>
+      <a href="#ia">Assistente IA</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">PLATAFORMA DIGITAL CRISTÃ</p>
+        <h1>Uma voz anunciando a Palavra em meio ao deserto.</h1>
+        <p>TV, rádio, podcast, estudos bíblicos e teológicos, transmissões ao vivo e, futuramente, cursos.</p>
+        <div class="actions">
+          <a class="btn primary" href="#tv">Assistir TV</a>
+          <a class="btn secondary" href="#estudos">Explorar estudos</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="live-dot"></div>
+        <span>PROGRAMAÇÃO</span>
+        <h2>Voz que Clama TV</h2>
+        <p>Conteúdo gravado e transmissões ao vivo.</p>
+        <button class="play" onclick="showMessage('A TV digital será conectada na próxima etapa.')">▶ Assistir</button>
+      </div>
+    </section>
+
+    <section class="section" id="tv">
+      <div class="section-heading">
+        <span>01</span>
+        <div><h2>TV</h2><p>Uma programação digital com conteúdo cristão.</p></div>
+      </div>
+      <div class="grid cards">
+        <article class="card featured">
+          <span class="tag">EM BREVE</span>
+          <h3>Voz que Clama TV</h3>
+          <p>Programação automática, conteúdos gravados e entrada ao vivo.</p>
+          <button class="btn secondary" onclick="showMessage('Aqui ficará o player da TV.')">Abrir TV</button>
+        </article>
+        <article class="card"><h3>Ao vivo</h3><p>Entrevistas, palestras, estudos e eventos transmitidos em tempo real.</p></article>
+        <article class="card"><h3>Programação</h3><p>Grade com horários para estudos, entrevistas, louvor e mensagens.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="radio">
+      <div class="section-heading">
+        <span>02</span>
+        <div><h2>Rádio</h2><p>Áudio contínuo, como uma rádio digital.</p></div>
+      </div>
+      <div class="radio-player">
+        <div class="radio-info">
+          <span class="tag">RÁDIO</span>
+          <h3>Voz que Clama Rádio</h3>
+          <p id="radioStatus">Programação preparada para receber hinos, mensagens e anúncios autorizados.</p>
+        </div>
+        <button class="round-play" onclick="toggleRadio()">▶</button>
+      </div>
+    </section>
+
+    <section class="section" id="podcast">
+      <div class="section-heading">
+        <span>03</span>
+        <div><h2>Podcast</h2><p>Conversas, entrevistas e debates.</p></div>
+      </div>
+      <div class="grid cards">
+        <article class="card"><span class="tag">EPISÓDIO 01</span><h3>Fé e os desafios do nosso tempo</h3><p>Entrevistas com pastores, teólogos e convidados.</p><button class="btn secondary" onclick="showMessage('O player do podcast será adicionado nesta etapa.')">Ouvir</button></article>
+        <article class="card"><span class="tag">NOVO</span><h3>Conversa sobre a Bíblia</h3><p>Conteúdo em vídeo e áudio.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="estudos">
+      <div class="section-heading">
+        <span>04</span>
+        <div><h2>Estudos</h2><p>Uma biblioteca para Bíblia, Teologia e formação cristã.</p></div>
+      </div>
+      <div class="grid study-grid">
+        <article class="study"><span>📖</span><h3>Estudo Bíblico</h3><p>Passagens, temas e estudos organizados.</p></article>
+        <article class="study"><span>✦</span><h3>Teologia</h3><p>Cristologia, Escatologia e outros temas.</p></article>
+        <article class="study"><span>🕊</span><h3>Capelania</h3><p>Conteúdos para formação e estudo.</p></article>
+        <article class="study"><span>🎓</span><h3>Cursos</h3><p>Área reservada para a futura formação online.</p></article>
+      </div>
+    </section>
+
+    <section class="section ai-section" id="ia">
+      <div class="section-heading">
+        <span>05</span>
+        <div><h2>Assistente de Estudos</h2><p>A área de inteligência artificial da plataforma.</p></div>
+      </div>
+      <div class="ai-box">
+        <div>
+          <span class="tag">IA</span>
+          <h3>Estude, pergunte e organize ideias.</h3>
+          <p>Na versão inicial, esta área é uma demonstração. A conexão com um serviço de IA será feita depois, com segurança e sem colocar uma chave secreta no navegador.</p>
+        </div>
+        <div class="chat-demo">
+  <div class="bubble ai" id="respostaIA">A resposta aparecerá aqui...</div>
+  <div class="chat-row">
+    <input id="aiInput" placeholder="Digite ou fale sua pergunta...">
+    <button id="btn-mic" onclick="falarPergunta()">🎤</button>
+    <button onclick="demoAI()">Enviar</button>
+    <button id="btn-ouvir" onclick="ouvirResposta()">🔊</button>
+  </div>
+</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>VOZ QUE CLAMA</strong>
+    <p>Projeto inicial — a plataforma será construída por etapas.</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

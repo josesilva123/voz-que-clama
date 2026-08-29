@@ -1,10 +1,194 @@
-Antes de tudo, uma coisa importante: eu não consigo gerar uma imagem fotorrealista da cerâmica em si — não tenho essa ferramenta de criação de imagem aqui. O que eu posso fazer é montar um diagrama visual pra te mostrar a lógica de como posicionar as quatro peças pra ficar bonito, com as setas de orientação e a técnica de espelhamento. Vou preparar isso agora.Prontinho, Idemar. Confirmado: quatro peças nesse modelo em retrato, com a curva dourada.
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Layout da cerâmica — parede do banheiro</title>
+<style>
+  :root{
+    --azul-claro:#c9d8de;
+    --azul-medio:#8fa8b3;
+    --azul-escuro:#5c7480;
+    --branco:#f4f2ec;
+    --dourado:#c9a04e;
+    --dourado-claro:#e6c777;
+    --grafite:#2e2b26;
+    --papel:#efe9df;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--papel);
+    color:var(--grafite);
+    font-family:"Georgia","Times New Roman",serif;
+    padding:40px 20px 80px;
+  }
+  h1{
+    font-size:28px;
+    font-weight:400;
+    letter-spacing:0.5px;
+    text-align:center;
+    margin-bottom:6px;
+  }
+  .subtitulo{
+    text-align:center;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:13px;
+    color:#7a7263;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:40px;
+  }
+  .cena{
+    max-width:520px;
+    margin:0 auto 30px;
+    background:#d8d2c4;
+    border-radius:4px;
+    padding:36px 30px 22px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.18);
+  }
+  .parede-label{
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:11px;
+    color:#8a8272;
+    text-align:center;
+    letter-spacing:1px;
+    margin-bottom:14px;
+  }
+  .painel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr;
+    width:100%;
+    aspect-ratio: 610 / 1160;
+    max-width: 300px;
+    margin: 0 auto;
+    border:3px solid var(--grafite);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+  .peca{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(0,0,0,0.25);
+    background:
+      radial-gradient(120% 90% at 15% 10%, var(--branco) 0%, var(--azul-claro) 38%, var(--azul-medio) 62%, var(--azul-escuro) 100%);
+  }
+  .peca::before{
+    content:"";
+    position:absolute;
+    inset:-10%;
+    background:
+      linear-gradient(115deg, transparent 38%, var(--dourado-claro) 44%, var(--dourado) 47%, transparent 53%),
+      linear-gradient(115deg, transparent 60%, var(--dourado) 64%, var(--dourado-claro) 66%, transparent 70%);
+    mix-blend-mode:multiply;
+    opacity:0.85;
+  }
+  .peca.espelho-x{ transform: scaleX(-1); }
+  .peca.espelho-y{ transform: scaleY(-1); }
+  .peca.espelho-xy{ transform: scale(-1,-1); }
 
-Como eu não tenho ferramenta de gerar imagem realista, montei um diagrama esquemático mostrando a lógica de posicionamento — abra o arquivo acima. A técnica que sugeri é o "book-match" (espelhamento):
+  .numero{
+    position:absolute;
+    top:8px;
+    left:8px;
+    width:22px;height:22px;
+    background:var(--grafite);
+    color:#f4f2ec;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    z-index:2;
+  }
+  .peca.espelho-x .numero,.peca.espelho-xy .numero{ transform: scaleX(-1); left:auto; right:8px; }
+  .peca.espelho-y .numero,.peca.espelho-xy .numero{ transform: scaleY(-1); top:auto; bottom:8px; }
+  .peca.espelho-xy .numero{ transform: scale(-1,-1); }
 
-- **Peça um** (canto superior esquerdo): normal, como sai da caixa.
-- **Peça dois** (canto superior direito): espelhada na horizontal.
-- **Peça três** (canto inferior esquerdo): espelhada na vertical.
-- **Peça quatro** (canto inferior direito): espelhada nos dois sentidos.
+  .seta{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    width:16px;height:16px;
+    z-index:2;
+  }
+  .peca.espelho-x .seta{ transform: scaleX(-1); right:auto; left:10px; }
+  .peca.espelho-y .seta{ transform: scaleY(-1); bottom:auto; top:10px; }
+  .peca.espelho-xy .seta{ transform: scale(-1,-1); bottom:auto; top:10px; right:auto; left:10px; }
 
-Como a veia dourada nasce num canto e se abre em curva, espelhar as quatro ao redor do centro faz as curvas se encontrarem no meio e formarem um desenho simétrico — tipo uma flor ou borboleta se abrindo — em vez de quatro peças repetidas soltas. Esse painel fica com aproximadamente um metro e vinte e dois centímetros de largura por dois metros e trinta e dois centímetros de altura, e dá pra centralizar ele na parede do chuveiro, que tem três metros e dez de largura.
+  .legenda{
+    max-width:520px;
+    margin:0 auto;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:14px;
+    line-height:1.7;
+    color:#3a362e;
+  }
+  .legenda h2{
+    font-family:Georgia,serif;
+    font-weight:400;
+    font-size:18px;
+    margin:26px 0 8px;
+    border-bottom:1px solid #c9c2b2;
+    padding-bottom:6px;
+  }
+  .lista li{margin-left:18px;margin-bottom:6px;}
+  .medidas{
+    font-family:Arial,Helvetica,sans-serif;
+    text-align:center;
+    font-size:12px;
+    color:#8a8272;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Painel espelhado — quatro peças</h1>
+  <div class="subtitulo">Parede do chuveiro · Modelo dourado e azul (retrato)</div>
+
+  <div class="cena">
+    <div class="parede-label">vista da parede, de frente</div>
+    <div class="painel">
+      <div class="peca">
+        <div class="numero">1</div>
+        <svg class="seta" viewBox="0 0 24 24"><path d="M12 2 L12 20 M12 2 L6 8 M12 2 L18 8" stroke="#f4f2ec" stroke-width="2" fill="none"/></svg>
+      </div>
+      <div class="peca espelho-x">
+        <div class="numero">2</div>
+        <svg class="seta" viewBox="0 0 24 24"><path d="M12 2 L12 20 M12 2 L6 8 M12 2 L18 8" stroke="#f4f2ec" stroke-width="2" fill="none"/></svg>
+      </div>
+      <div class="peca espelho-y">
+        <div class="numero">3</div>
+        <svg class="seta" viewBox="0 0 24 24"><path d="M12 2 L12 20 M12 2 L6 8 M12 2 L18 8" stroke="#f4f2ec" stroke-width="2" fill="none"/></svg>
+      </div>
+      <div class="peca espelho-xy">
+        <div class="numero">4</div>
+        <svg class="seta" viewBox="0 0 24 24"><path d="M12 2 L12 20 M12 2 L6 8 M12 2 L18 8" stroke="#f4f2ec" stroke-width="2" fill="none"/></svg>
+      </div>
+    </div>
+    <div class="medidas">painel de aproximadamente um metro e vinte e dois centímetros de largura por dois metros e trinta e dois centímetros de altura</div>
+  </div>
+
+  <div class="legenda">
+    <p><strong>Atenção:</strong> este diagrama é esquemático — as cores e as veias douradas são só uma aproximação pra mostrar a lógica do espelhamento. Não é uma reprodução exata do mármore da cerâmica real.</p>
+
+    <h2>Como posicionar as quatro peças</h2>
+    <ul class="lista">
+      <li><strong>Peça um (canto superior esquerdo):</strong> na orientação normal, exatamente como ela sai da caixa, com a seta apontando pra cima.</li>
+      <li><strong>Peça dois (canto superior direito):</strong> igual à peça um, mas espelhada na horizontal (invertida da esquerda pra direita) — como se fosse o reflexo dela num espelho vertical no meio da parede.</li>
+      <li><strong>Peça três (canto inferior esquerdo):</strong> igual à peça um, mas espelhada na vertical (invertida de cima pra baixo) — como um reflexo num espelho horizontal na metade da altura.</li>
+      <li><strong>Peça quatro (canto inferior direito):</strong> espelhada nos dois sentidos ao mesmo tempo (horizontal e vertical) — é a peça um girada de cabeça pra baixo e invertida.</li>
+    </ul>
+
+    <h2>Por que isso fica bonito</h2>
+    <p>Essa técnica se chama "book-match" (marcenaria e marmoraria usam muito). Como a veia dourada da sua peça faz uma curva que nasce num canto e se abre pro outro, espelhando as quatro peças ao redor do centro, as curvas douradas se encontram no meio do painel e formam um desenho simétrico, tipo uma borboleta ou uma flor se abrindo — em vez de quatro peças repetidas soltas, vira um desenho único de dois metros e trinta e dois centímetros de altura.</p>
+
+    <h2>Na prática, na hora de assentar</h2>
+    <ul class="lista">
+      <li>Separe as quatro peças no chão, do jeito que estão nas suas fotos, e vire fisicamente duas delas de cabeça pra baixo, e duas delas invertidas de lado, seguindo a numeração acima.</li>
+      <li>Alinhe primeiro as duas peças de cima, encostando uma na outra pelo lado onde a veia dourada bate exatamente na mesma altura nas duas.</li>
+      <li>Depois desça pras duas de baixo, repetindo o mesmo cuidado de alinhar a veia dourada na junta central.</li>
+      <li>Centralize esse painel de um metro e vinte e dois centímetros de largura na parede do chuveiro — como a parede tem três metros e dez centímetros, vai sobrar espaço dos dois lados pra completar com as peças dos outros modelos, ou com a cerâmica lisa que for usar de complemento.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

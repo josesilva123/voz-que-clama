@@ -3,6 +3,8 @@ const express = require('express');
 const { GoogleGenAI } = require('@google/genai');
 
 const app = express();
+app.use(express.static(__dirname));
+
 const basicAuth = require('express-basic-auth');
 app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) {
@@ -20,9 +22,7 @@ const PORT = 3000;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-app.use(express.json());
 
-app.use(express.static(__dirname));
 app.post('/api/perguntar', async (req, res) => {
     const pergunta = req.body.pergunta || '';
 

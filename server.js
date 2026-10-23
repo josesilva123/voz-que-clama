@@ -4,12 +4,18 @@ const { GoogleGenAI } = require('@google/genai');
 
 const app = express();
 const basicAuth = require('express-basic-auth');
-
-app.use(basicAuth({
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  
+  basicAuth({
     users: { 'admin': 'sua-senha-aqui' },
     challenge: true,
     unauthorizedResponse: 'Acesso restrito.'
-}));
+  })(req, res, next);
+});
+ss
 const PORT = 3000;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
